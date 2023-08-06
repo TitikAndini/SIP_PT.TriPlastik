@@ -1,131 +1,113 @@
-@extends('layout/layouts')
+@extends('layout/layouts1')
 @section('content')
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="x_panel">
-            <div class="x_title">
-                <h2>Transaction Summary <small>Weekly progress</small></h2>
-                <div class="filter">
-                    <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
-                        <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-                        <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>LAPORAN </h3>
             </div>
-            <div class="x_content">
-                <div class="col-md-9 col-sm-12 ">
-                    <div class="demo-container" style="height:280px">
-                        <div id="chart_plot_02" class="demo-placeholder"></div>
-                    </div>
-                    <div class="tiles">
-                        <div class="col-md-4 tile">
-                            <span>Total Sessions</span>
-                            <h2>231,809</h2>
-                            <span class="sparkline11 graph" style="height: 160px;">
-                                <canvas width="200" height="60" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
-                            </span>
-                        </div>
-                        <div class="col-md-4 tile">
-                            <span>Total Revenue</span>
-                            <h2>$231,809</h2>
-                            <span class="sparkline22 graph" style="height: 160px;">
-                                <canvas width="200" height="60" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
-                            </span>
-                        </div>
-                        <div class="col-md-4 tile">
-                            <span>Total Sessions</span>
-                            <h2>231,809</h2>
-                            <span class="sparkline11 graph" style="height: 160px;">
-                                <canvas width="200" height="60" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
-                            </span>
-                        </div>
-                    </div>
+        </div>
 
-                </div>
+        <div class="clearfix"></div>
 
-                <div class="col-md-3 col-sm-12 ">
-                    <div>
-                        <div class="x_title">
-                            <h2>Top Profiles</h2>
-                            <ul class="nav navbar-right panel_toolbox">
-                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="#">Settings 1</a>
-                                        <a class="dropdown-item" href="#">Settings 2</a>
-                                    </div>
-                                </li>
-                                <li><a class="close-link"><i class="fa fa-close"></i></a>
-                                </li>
-                            </ul>
-                            <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Laporan Bulanan</h2><br><br>
+
+                        <div class="item form-group">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Dari</label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <input name="tanggal" id="tangal" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" type="text" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
+                                <script>
+                                    function timeFunctionLong(input) {
+                                        setTimeout(function() {
+                                            input.type = 'text';
+                                        }, 60000);
+                                    }
+                                </script>
+                            </div>
                         </div>
-                        <ul class="list-unstyled top_profiles scroll-view">
-                            <li class="media event">
-                                <a class="pull-left border-aero profile_thumb">
-                                    <i class="fa fa-user aero"></i>
-                                </a>
-                                <div class="media-body">
-                                    <a class="title" href="#">Ms. Mary Jane</a>
-                                    <p><strong>$2300. </strong> Agent Avarage Sales </p>
-                                    <p> <small>12 Sales Today</small>
-                                    </p>
+                        <div class="item form-group">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Sampai</label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <input name="tanggal" id="tangal" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" type="text" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
+                                <script>
+                                    function timeFunctionLong(input) {
+                                        setTimeout(function() {
+                                            input.type = 'text';
+                                        }, 60000);
+                                    }
+                                </script>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="card-box table-responsive">
+                                    <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Tanggal</th>
+                                                <th>Pemasukan</th>
+                                                <th>Pengeluaran</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>2023-08-01</td>
+                                                <td>Rp. 0</td>
+                                                <td>Rp. 123.000</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>2023-08-02</td>
+                                                <td>Rp. 420.000</td>
+                                                <td>Rp. 53.000</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>2023-08-03</td>
+                                                <td>Rp. 0</td>
+                                                <td>Rp. 0</td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td>2023-08-04</td>
+                                                <td>Rp. 0</td>
+                                                <td>Rp. 57.000</td>
+                                            </tr>
+                                            <tr>
+                                                <td>5</td>
+                                                <td>2023-08-05</td>
+                                                <td>Rp. 210.000</td>
+                                                <td>Rp. 0</td>
+                                            </tr>
+                                            <tr>
+                                                <td>6</td>
+                                                <td>2023-08-06</td>
+                                                <td>Rp. 0</td>
+                                                <td>Rp. 0</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
                                 </div>
-                            </li>
-                            <li class="media event">
-                                <a class="pull-left border-green profile_thumb">
-                                    <i class="fa fa-user green"></i>
-                                </a>
-                                <div class="media-body">
-                                    <a class="title" href="#">Ms. Mary Jane</a>
-                                    <p><strong>$2300. </strong> Agent Avarage Sales </p>
-                                    <p> <small>12 Sales Today</small>
-                                    </p>
-                                </div>
-                            </li>
-                            <li class="media event">
-                                <a class="pull-left border-blue profile_thumb">
-                                    <i class="fa fa-user blue"></i>
-                                </a>
-                                <div class="media-body">
-                                    <a class="title" href="#">Ms. Mary Jane</a>
-                                    <p><strong>$2300. </strong> Agent Avarage Sales </p>
-                                    <p> <small>12 Sales Today</small>
-                                    </p>
-                                </div>
-                            </li>
-                            <li class="media event">
-                                <a class="pull-left border-aero profile_thumb">
-                                    <i class="fa fa-user aero"></i>
-                                </a>
-                                <div class="media-body">
-                                    <a class="title" href="#">Ms. Mary Jane</a>
-                                    <p><strong>$2300. </strong> Agent Avarage Sales </p>
-                                    <p> <small>12 Sales Today</small>
-                                    </p>
-                                </div>
-                            </li>
-                            <li class="media event">
-                                <a class="pull-left border-green profile_thumb">
-                                    <i class="fa fa-user green"></i>
-                                </a>
-                                <div class="media-body">
-                                    <a class="title" href="#">Ms. Mary Jane</a>
-                                    <p><strong>$2300. </strong> Agent Avarage Sales </p>
-                                    <p> <small>12 Sales Today</small>
-                                    </p>
-                                </div>
-                            </li>
-                        </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 </div>
+<!-- /page content -->
+
 @endsection

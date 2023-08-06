@@ -30,9 +30,12 @@ class HomeController extends Controller
         return view('sekretaris/index', compact('barang', 'pembelian', 'penjualan'));
     }
 
-    public function pemilikHome()
+    public function index1()
     {
-        return view('pemilikHome');
+        $barang = DB::table('barangs')->get();
+        $pembelian = DB::table('pembelians')->get();
+        $penjualan = DB::table('penjualans')->get();
+        return view('pemilik/index', compact('barang', 'pembelian', 'penjualan'));
     }
 
     /**
