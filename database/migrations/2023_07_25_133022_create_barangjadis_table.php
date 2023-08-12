@@ -16,7 +16,7 @@ class CreateBarangjadisTable extends Migration
         Schema::create('barangjadis', function (Blueprint $table) {
             $table->increments('id_barangjadi');
             $table->string("id_barang");
-            $table->string("Stok");
+            $table->integer("Stok");
             $table->timestamps();
         });
     }

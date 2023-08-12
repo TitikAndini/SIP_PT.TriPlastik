@@ -16,7 +16,7 @@
                     <div class="x_title">
                         <h2>Data BARANG JADI</h2>
                         <ul class="nav navbar-right panel_toolbox">
-                           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                             </li>
                         </ul>
                         <div class="clearfix"></div>
@@ -34,13 +34,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php
+                                    $no = 1;
+                                    @endphp
+                                    @foreach($datapenjualan as $data)
                                     <tr>
-                                        <td>1</td>
-                                        <td>PVC</td>
-                                        <td>Rp. 900</td>
-                                        <td>Rp. 8000</td>
-                                        <td>17 KG</td>
+                                        <td>{{ $no++ }}</td>
+                                        <td>{{ $data->nama_barang }}</td>
+                                        <td>Rp.{{ $data->harga_beli }}</td>
+                                        <td>Rp.{{ $data->harga_jual }}</td>
+                                        <td>{{ $data->Stok }} KG</td>
+
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

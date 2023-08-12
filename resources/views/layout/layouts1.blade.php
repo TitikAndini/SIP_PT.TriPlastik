@@ -56,6 +56,7 @@
                                 </li>
                                 <li><a href="{{url('/pemilik/penjualan/laporan')}}"><i class="fa fa-dollar"></i> Laporan</a></li>
 
+                                <li><a href="{{url('/pemilik/user/')}}"><i class="fa fa-user"></i> Data User</a></li>
 
                             </ul>
                         </div>

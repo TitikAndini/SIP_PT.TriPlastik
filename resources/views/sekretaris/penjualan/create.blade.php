@@ -20,7 +20,7 @@
                     </div>
                     <div class="x_content">
                         <br />
-                        <form method="POST" action="{{ url('sekretaris/barang/store') }}" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                        <form method="POST" action="{{ url('sekretaris/penjualan/store') }}" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
                             @csrf
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Tanggal</label>
@@ -36,9 +36,9 @@
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Nama Pemasok</label>
+                                <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Nama Pembeli</label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input id="middle-name" class="form-control" type="text" name="pemasok">
+                                    <input id="middle-name" class="form-control" type="text" name="pembeli">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -52,8 +52,9 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
                                     <select name="id_barang" id="select" class="form-control">
-                                      
-                                        <option value="">PET Bening </option>
+                                        @foreach($databarang as $data)
+                                        <option value="{{ $data->id_barang}}">{{ $data->nama_barang }} </option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>

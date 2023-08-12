@@ -16,7 +16,7 @@ class CreateBahanbakusTable extends Migration
         Schema::create('bahanbakus', function (Blueprint $table) {
             $table->increments('id_bahanbaku');
             $table->string("id_barang");
-            $table->string("Stok");
+            $table->integer("Stok");
             $table->timestamps();
         });
     }

@@ -19,8 +19,8 @@ class CreatePenjualansTable extends Migration
             $table->string('pembeli');
             $table->string("no_hp");
             $table->string("id_barang");
-            $table->string("jumlah");
-            $table->string("total");
+            $table->integer("jumlah");
+            $table->integer("total");
             $table->timestamps();
         });
     }

@@ -81,11 +81,11 @@
                                     <?php
                                     if ($datapembelian->status == "Diterima") {
                                     ?>
-                                    <button class="btn btn-success " disabled><i class="fa fa-check"></i> {{$datapembelian->status}}</button>
+                                        <button class="btn btn-success " disabled><i class="fa fa-check"></i> {{$datapembelian->status}}</button>
                                     <?php
                                     } else if ($datapembelian->status == "Ditolak") {
                                     ?>
-                                    <button class="btn btn-danger " disabled><i class="fa fa-remove"></i> {{$datapembelian->status}}</button>
+                                        <button class="btn btn-danger " disabled><i class="fa fa-remove"></i> {{$datapembelian->status}}</button>
                                     <?php
                                     } else {
                                     ?>
@@ -121,30 +121,30 @@
                                 </div>
                             </div>
                             <!-- /.col -->
-                    </div>
-                    <!-- /.row -->
 
-                    <!-- this row will not appear when printing -->
-                    <div class="row no-print">
-                        <div class=" ">
-                            <?php
-                            if ($datapembelian->status != "Diterima") {
-                            ?>
-                                <a href="#" class="btn btn-info btn-xs disabled"><i class="fa fa-pencil"></i> cetak </a>
-                            <?php } else { ?>
-                                <a href="#" onclick="window.print();" class="btn btn-info btn-xs "><i class="fa fa-pencil"></i> cetak </a>
-                            <?php } ?>
-                            <!-- <button class="btn btn-default" onclick="window.print();"><i class="fa fa-print"></i> Print</button> -->
-                            <!-- <button class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment</button> -->
-                            <!-- <button class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i> Generate PDF</button> -->
-                        </div>
+                            <!-- /.row -->
+
+                            <!-- this row will not appear when printing -->
+                            <div class="row no-print">
+                                <div class=" ">
+                                    <?php
+                                    if ($datapembelian->status != "Diterima") {
+                                    ?>
+                                        <a href="#" class="btn btn-info btn-xs disabled"><i class="fa fa-pencil"></i> cetak </a>
+                                    <?php } else { ?>
+                                        <a href="#" onclick="window.print();" class="btn btn-info btn-xs "><i class="fa fa-pencil"></i> cetak </a>
+                                    <?php } ?>
+                                    <!-- <button class="btn btn-default" onclick="window.print();"><i class="fa fa-print"></i> Print</button> -->
+                                    <!-- <button class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment</button> -->
+                                    <!-- <button class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i> Generate PDF</button> -->
+                                </div>
+                            </div>
+                        </section>
                     </div>
-                    </section>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 
 @endsection

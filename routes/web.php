@@ -8,6 +8,7 @@ use App\Http\Controllers\pembelianController;
 use App\Http\Controllers\pembelianController1;
 use App\Http\Controllers\penjualanController;
 use App\Http\Controllers\penjualancontroller1;
+use App\Http\Controllers\userController;
 use App\Models\penjualan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -45,15 +46,19 @@ Route::get('sekretaris/pembelian/create', [pembelianController::class, 'create']
 Route::post('sekretaris/pembelian/store', [pembelianController::class, 'store']);
 
 Route::get('sekretaris/pembelian/bahanbaku', [pembelianController::class, 'bahanbaku']);
-Route::get('sekretaris/pembelian/masukproduksi', [pembelianController::class, 'masuk']);
+Route::get('sekretaris/pembelian/masukproduksi/', [pembelianController::class, 'masuk']);
+Route::put('sekretaris/pembelian/masukAksi/{id}', [pembelianController::class, 'masukAksi']);
 Route::get('sekretaris/pembelian/show/{id}', [pembelianController::class, 'show']);
 Route::get('sekretaris/pembelian/historibahanbaku', [pembelianController::class, 'historibahanbaku']);
 
 Route::get('sekretaris/penjualan/', [penjualanController::class, 'index']);
-Route::get('sekretaris/penjualan/show', [penjualanController::class, 'show1']);
+Route::get('sekretaris/penjualan/show/{id}', [penjualanController::class, 'show']);
 Route::get('sekretaris/penjualan/create', [penjualanController::class, 'create']);
+Route::post('sekretaris/penjualan/store', [penjualanController::class, 'store']);
+
 Route::get('sekretaris/penjualan/barangjadi', [penjualanController::class, 'barangjadi']);
 Route::get('sekretaris/penjualan/keluarproduksi', [penjualanController::class, 'keluar']);
+Route::put('sekretaris/penjualan/keluarAksi/{id}', [penjualanController::class, 'keluarAksi']);
 Route::get('sekretaris/penjualan/historibarangjadi', [penjualanController::class, 'historibarangjadi']);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -69,6 +74,8 @@ Route::delete('pemilik/barang/destroy/{id}', [barangController1::class, 'destroy
 
 Route::get('pemilik/pembelian/', [pembelianController1::class, 'index']);
 Route::get('pemilik/pembelian/show/{id}', [pembelianController1::class, 'show']);
+Route::post('pemilik/pembelian/terima/{id}', [pembelianController1::class, 'terima']);
+Route::post('pemilik/pembelian/tolak/{id}', [pembelianController1::class, 'tolak']);
 
 Route::get('pemilik/pembelian/bahanbaku', [pembelianController1::class, 'bahanbaku']);
 Route::get('pemilik/pembelian/historibahanbaku', [pembelianController1::class, 'historibahanbaku']);
@@ -80,3 +87,7 @@ Route::get('pemilik/penjualan/barangjadi', [penjualancontroller1::class, 'barang
 Route::get('pemilik/penjualan/historibarangjadi', [penjualancontroller1::class, 'historibarangjadi']);
 
 Route::get('pemilik/penjualan/laporan', [penjualancontroller1::class, 'laporan']);
+
+Route::get('pemilik/user/', [userController::class, 'index']);
+Route::get('pemilik/user/create', [userController::class, 'create']);
+Route::get('pemilik/user/edit/', [userController::class, 'edit']);

@@ -20,8 +20,9 @@
                     </div>
                     <div class="x_content">
                         <br />
-                        <form method="POST" action="" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                        <form method="POST" action="{{ url('sekretaris/penjualan/keluarAksi',$databarang[0]->id_barang) }}" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
                             @csrf
+                            @method('PUT')
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Tanggal</label>
                                 <!-- <div class="col-md-6 col-sm-6 "> -->
@@ -43,7 +44,9 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 ">
                                     <select name="id_barang" id="select" class="form-control">
-                                        <option value="">PET Bening </option>
+                                        @foreach($databarang as $data)
+                                        <option value="{{ $data->id_barang}}">{{ $data->nama_barang }} </option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>

@@ -17,7 +17,7 @@ class CreateHistoriBahanbakusTable extends Migration
             $table->increments('id_histori_bahanbaku');
             $table->dateTime('tanggal');
             $table->string('id_bahanbaku');
-            $table->string('jumlah');
+            $table->integer('jumlah');
             $table->timestamps();
         });
     }

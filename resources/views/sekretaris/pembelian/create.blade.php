@@ -20,7 +20,7 @@
                     </div>
                     <div class="x_content">
                         <br />
-                        <form method="POST" action="{{ url('sekretaris/barang/store') }}" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                        <form method="POST" action="{{ url('sekretaris/pembelian/store') }}" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
                             @csrf
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Tanggal</label>

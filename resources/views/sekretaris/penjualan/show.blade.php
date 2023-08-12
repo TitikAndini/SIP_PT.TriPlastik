@@ -28,7 +28,7 @@
                                 <div class="invoice-header">
                                     <h1>
                                         <!-- <i class="fa fa-recycle"></i> -->
-                                        <small class="pull-right"> Date : 2023-08-05</small>
+                                        <small class="pull-right"> Date : {{$datapenjualan->tanggal}}</small>
                                     </h1>
                                 </div>
                                 <!-- /.col -->
@@ -36,7 +36,7 @@
                             <!-- info row -->
                             <div class="row invoice-info">
                                 <div class="col-sm-4 invoice-col">
-                                    To
+                                    From
                                     <address>
                                         <strong>PT. TRI PLASTIK </strong>
                                         <br>Jalan D.Sudrajat No.05
@@ -47,13 +47,19 @@
                                 </div>
                                 <!-- /.col -->
                                 <div class="col-sm-4 invoice-col">
-                                    From
+                                    To
                                     <address>
-                                        <strong>Risma A</strong>
-                                        <br>0877765423151
+                                        <strong>{{$datapenjualan->pembeli}}</strong>
+                                        <br>{{$datapenjualan->no_hp}}
                                     </address>
                                 </div>
+                                <!-- /.col -->
+
+                                <!-- /.col -->
                             </div>
+                            <!-- /.row -->
+
+                            <!-- Table row -->
                             <div class="row">
                                 <div class="  table">
                                     <table class="table table-striped">
@@ -67,27 +73,35 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>PVC</td>
-                                                <td>10 KG</td>
-                                                <td>Rp. 8000</td>
-                                                <td>Rp. 80000</td>
+                                                <td>{{$datapenjualan->nama_barang}}</td>
+                                                <td>{{$datapenjualan->jumlah}}</td>
+                                                <td>{{$datapenjualan->harga_beli}}</td>
+                                                <td>{{$datapenjualan->jumlah * $datapenjualan->harga_beli}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
+                            <!-- /.col -->
+
+                            <!-- /.row -->
+
+                            <!-- this row will not appear when printing -->
+                            <div class="row no-print">
+                                <div class=" ">
+                                    <a href="#" onclick="window.print();" class="btn btn-info btn-xs "><i class="fa fa-pencil"></i> cetak </a>
+
+                                    <!-- <button class="btn btn-default" onclick="window.print();"><i class="fa fa-print"></i> Print</button> -->
+                                    <!-- <button class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment</button> -->
+                                    <!-- <button class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i> Generate PDF</button> -->
+                                </div>
+                            </div>
+                        </section>
                     </div>
-                    <div class="row no-print">
-                        <div class=" ">
-                                <a href="#" onclick="window.print();" class="btn btn-info btn-xs "><i class="fa fa-pencil"></i> cetak </a>
-                          </div>
-                    </div>
-                    </section>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 
 @endsection

@@ -40,11 +40,11 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <!-- @php
+                                            @php
                                             $no = 1;
                                             @endphp
-                                            @foreach($datapembelian as $data) -->
-                                            <!-- <tr>
+                                            @foreach($datapenjualan as $data)
+                                            <tr>
                                                 <td>{{ $no++ }}</td>
                                                 <td>{{ $data->tanggal }}</td>
                                                 <td>{{ $data->pembeli }}</td>
@@ -52,26 +52,12 @@
                                                 <td>{{ $data->nama_barang }}</td>
                                                 <td>{{ $data->jumlah }}</td>
                                                 <td>{{ $data->total }}</td>
+
                                                 <td>
-                                                    <a href="{{ url('pemilik/pembelian/show',$data->id_pembelian) }}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-
-
-                                                </td>
-                                            </tr> -->
-
-                                            <!-- @endforeach -->
-                                            <tr>
-                                                <td>1</td>
-                                                <td>2023-08-05</td>
-                                                <td>Risma A</td>
-                                                <td>0877765423151</td>
-                                                <td>PVC</td>
-                                                <td>10 KG</td>
-                                                <td>80000</td>
-                                                <td>
-                                                    <a href="{{url('pemilik/penjualan/show')}}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                                                    <a href="{{ url('sekretaris/penjualan/show',$data->id_penjualan) }}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
                                                 </td>
                                             </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
 

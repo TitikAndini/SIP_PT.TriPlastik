@@ -14,17 +14,14 @@ class penjualancontroller1 extends Controller
      */
     public function index()
     {
-        $datapembelian = DB::table('penjualans')
+        $datapenjualan = DB::table('penjualans')
             ->select('penjualans.*', 'barangs.*')
             ->join('barangs', 'penjualans.id_barang', 'barangs.id_barang')
             ->orderBy('tanggal', 'DESC')
             ->get();
-        return view('pemilik/penjualan/index', compact('datapembelian'));
+        return view('pemilik/penjualan/index', compact('datapenjualan'));
     }
-    public function laporan()
-    {
-        return view('pemilik/laporan');
-    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -32,7 +29,13 @@ class penjualancontroller1 extends Controller
      */
     public function create()
     {
-        return view('pemilik/penjualan/create');
+        $databarang = DB::table('barangs')->get();
+        $datapenjualan = DB::table('penjualans')
+            ->select('penjualans.*', 'barangs.*')
+            ->join('barangs', 'penjualans.id_barang', 'barangs.id_barang')
+            ->orderBy('tanggal', 'DESC')
+            ->get();
+        return view('pemilik/penjualan/create', compact('datapenjualan', 'databarang'));
     }
 
     /**
@@ -43,7 +46,33 @@ class penjualancontroller1 extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = DB::table('barangs')
+            ->select('barangs.harga_jual')
+            ->where('barangs.id_barang', $request->id_barang)->get();
+
+        $total = $data[0]->harga_jual * $request->jumlah;
+
+        DB::table('penjualans')->insert([
+            'tanggal' => $request->tanggal,
+            'pembeli' => $request->pembeli,
+            'no_hp' => $request->no_hp,
+            'id_barang' => $request->id_barang,
+            'jumlah' => $request->jumlah,
+            'total' => $total
+        ]);
+
+        $data1 = DB::table('barangjadis')
+            ->select('barangjadis.*', 'barangs.*')
+            ->join('barangs', 'barangjadis.id_barang', 'barangs.id_barang')
+            ->where('barangjadis.id_barang', $request->id_barang)->first();
+
+        $data2 = $data1->Stok - $request->jumlah;
+
+        DB::table('barangjadis')->where('id_barang', $request->id_barang)->update([
+            'Stok' => $data2,
+        ]);
+
+        return redirect()->to('pemilik/penjualan');
     }
 
     /**
@@ -52,25 +81,64 @@ class penjualancontroller1 extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show1()
-    {
-        return view('pemilik/penjualan/show');
-    }
+
     public function barangjadi()
     {
-        return view('pemilik/penjualan/barangjadi');
+        $datapenjualan = DB::table('barangjadis')
+            ->select('barangjadis.*', 'barangs.*')
+            ->join('barangs', 'barangjadis.id_barang', 'barangs.id_barang')
+            ->get();
+        return view('pemilik/penjualan/barangjadi', compact('datapenjualan'));
     }
     public function keluar()
     {
-        return view('pemilik/penjualan/keluarproduksi');
+        $databarang = DB::table('barangs')->get();
+        $databarangjadi = DB::table('barangjadis')
+            ->select('barangjadis.*', 'barangs.*')
+            ->join('barangs', 'barangjadis.id_barang', 'barangs.id_barang')
+            ->get();
+        return view('pemilik/penjualan/keluarproduksi', compact('databarang', 'databarangjadi'));
     }
+
+    public function keluarAksi(Request $request, $id)
+    {
+        $data1 = DB::table('barangjadis')
+            ->select('barangjadis.*', 'barangs.*')
+            ->join('barangs', 'barangjadis.id_barang', 'barangs.id_barang')
+            ->where('barangjadis.id_barangjadi', $id)->first();
+        // dd($data1);
+        $data2 = $data1->Stok + $request->jumlah;
+
+        DB::table('barangjadis')->where('id_barang', $request->id_barang)->update([
+            'Stok' => $data2,
+        ]);
+
+        DB::table('historipenjualans')->insert([
+            'tanggal' => $request->tanggal,
+            'id_barang' => $request->id_barang,
+            'jumlah' => $request->jumlah
+        ]);
+
+        return redirect()->to('pemilik/penjualan/historibarangjadi');
+    }
+
     public function historibarangjadi()
     {
-        return view('pemilik/penjualan/historibarangjadi');
+        $datahistori = DB::table('historipenjualans')
+            ->select('historipenjualans.*', 'barangs.*')
+            ->join('barangs', 'historipenjualans.id_barang', 'barangs.id_barang')
+            ->orderBy('tanggal', 'DESC')
+            ->get();
+        return view('pemilik/penjualan/historibarangjadi', compact('datahistori'));
     }
+
     public function show($id)
     {
-        return view('pemilik/penjualan/show');
+        $datapenjualan = DB::table('penjualans')
+            ->select('penjualans.*', 'barangs.*')
+            ->join('barangs', 'penjualans.id_barang', 'barangs.id_barang')
+            ->where('penjualans.id_penjualan', $id)->first();
+        return view('pemilik/penjualan/show', compact('datapenjualan'));
     }
 
     /**

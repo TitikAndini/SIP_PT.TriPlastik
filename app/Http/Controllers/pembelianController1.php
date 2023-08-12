@@ -57,6 +57,25 @@ class pembelianController1 extends Controller
         return view('pemilik/pembelian/show', compact('datapembelian'));
     }
 
+    public function terima($id)
+    {
+        DB::table('pembelians')->where('id_pembelian', $id)->update([
+            'status' => "Diterima"
+        ]);
+
+        return redirect()->to('pemilik/pembelian');
+    }
+
+    public function tolak($id)
+    {
+        DB::table('pembelians')->where('id_pembelian', $id)->update([
+            'status' => "Ditolak"
+        ]);
+
+        return redirect()->to('pemilik/pembelian');
+    }
+
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -93,7 +112,6 @@ class pembelianController1 extends Controller
 
     public function masuk()
     {
-        
     }
 
     public function bahanbaku()
@@ -107,13 +125,11 @@ class pembelianController1 extends Controller
 
     public function historibahanbaku()
     {
-        $datahistori1 = DB::table('histori_bahanbakus')->get();
-        $datahistori = DB::table('histori_bahanbakus')
-        ->select('histori_bahanbakus.*','bahanbakus.*', 'barangs.*')
-            ->join('bahanbakus','histori_bahanbakus.id_bahanbaku','bahanbakus.id_bahanbaku')
-            ->join('barangs', 'bahanbakus.id_barang', 'barangs.id_barang')
+        $datahistori = DB::table('historipembelians')
+            ->select('historipembelians.*', 'barangs.*')
+            ->join('barangs', 'historipembelians.id_barang', 'barangs.id_barang')
             ->orderBy('tanggal', 'DESC')
             ->get();
-        return view('pemilik/pembelian/historibahanbaku', compact('datahistori','datahistori1'));
+        return view('sekretaris/pembelian/historibahanbaku', compact('datahistori'));
     }
 }

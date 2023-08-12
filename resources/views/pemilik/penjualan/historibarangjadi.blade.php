@@ -33,12 +33,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php
+                                    $no = 1;
+                                    @endphp
+                                    @foreach($datahistori as $data)
                                     <tr>
-                                        <td>1</td>
-                                        <td>2023-08-05</td>
-                                        <td>PET Bening</td>
-                                        <td>15 KG</td>
+                                        <td>{{ $no++ }}</td>
+                                        <td>{{ $data->tanggal }}</td>
+                                        <td>{{ $data->nama_barang }}</td>
+                                        <td>{{ $data->jumlah }}</td>
+
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

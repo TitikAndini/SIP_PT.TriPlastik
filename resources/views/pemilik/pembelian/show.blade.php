@@ -78,12 +78,37 @@
                                 <!-- /.col -->
                                 <div class="col-sm-4 invoice-col">
                                     <b>Status Pengajuan pembelian </b><br><br>
-                                    
-                                    <button class="btn btn-success " ><i class="fa fa-check"></i>Terima</button>
-                                    
-                                    <button class="btn btn-danger " ><i class="fa fa-remove"></i>Tolak</button>
-                                    
 
+                                    <?php
+                                    if ($datapembelian->status == "Menunggu Konfirmasi") {
+                                    ?>
+                                        <form action="{{url('pemilik/pembelian/terima',$datapembelian->id_pembelian)}}" method="post">
+                                            @csrf
+                                            <button class="btn btn-success " type="submit"><i class="fa fa-check"></i>Terima</button>
+                                        </form>
+
+                                        <form action="{{url('pemilik/pembelian/tolak',$datapembelian->id_pembelian)}}" method="post">
+                                            @csrf
+                                            <button class="btn btn-danger " type="submit"><i class="fa fa-remove"></i>Tolak</button>
+                                        </form>
+                                    <?php } else { ?>
+                                        <?php
+                                        if ($datapembelian->status == "Diterima") {
+                                        ?>
+                                            <span class="btn btn-success">{{ $datapembelian->status }}</span>
+                                        <?php
+                                        } else if ($datapembelian->status == "Ditolak") {
+                                        ?>
+                                            <span class="btn btn-danger">{{ $datapembelian->status }}</span>
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <span class="btn btn-secondary">{{ $datapembelian->status }}</span>
+                                        <?php } ?>
+                                        </td>
+
+
+                                    <?php } ?>
                                 </div>
                                 <!-- /.col -->
                             </div>
@@ -119,8 +144,15 @@
                     <!-- this row will not appear when printing -->
                     <div class="row no-print">
                         <div class=" ">
+                            <?php
+                            if ($datapembelian->status != "Diterima") {
+                            ?>
+                                <a href="#" class="btn btn-info btn-xs disabled"><i class="fa fa-pencil"></i> cetak </a>
+                            <?php } else { ?>
                                 <a href="#" onclick="window.print();" class="btn btn-info btn-xs "><i class="fa fa-pencil"></i> cetak </a>
-                             </div>
+                            <?php } ?>
+                            <!-- <a href="#" onclick="window.print();" class="btn btn-info btn-xs "><i class="fa fa-pencil"></i> cetak </a> -->
+                        </div>
                     </div>
                     </section>
                 </div>

@@ -17,7 +17,7 @@ class CreateHistoripenjualansTable extends Migration
             $table->increments('id_historipenjualan');
             $table->dateTime('tanggal');
             $table->string("id_barang");
-            $table->string("jumlah");
+            $table->integer("jumlah");
             $table->timestamps();
         });
     }
